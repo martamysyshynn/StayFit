@@ -22,7 +22,7 @@ A web application for gym membership and workout scheduling, built with Python (
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd gym-management-system
+   cd repository_name
 
 2. **Create virtual environment**
    ```bash
