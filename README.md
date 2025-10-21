@@ -63,4 +63,5 @@ A web application for gym membership and workout scheduling, built with Python (
 
 ## Author
 Marta Mysyshynn
+
 GitHub: martamysyshynn
