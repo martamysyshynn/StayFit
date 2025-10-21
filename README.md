@@ -41,6 +41,7 @@ A web application for gym membership and workout scheduling, built with Python (
    ```
 
 5. **Initialize database**
+   
    Open a Python shell inside your virtual environment:
    ```bash
     from app import create_app
