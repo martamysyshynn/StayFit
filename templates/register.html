@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <h2 class="text-center mb-4" style="color: var(--primary-color);">Registration</h2>
+        <div class="card card-dark p-4">
+            
+            <form method="POST">
+                {{ form.hidden_tag() }} 
+                
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control", placeholder="Your email") }}
+                    {% for error in form.email.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form.full_name.label(class="form-label") }}
+                    {{ form.full_name(class="form-control", placeholder="Your name and surname") }}
+                    {% for error in form.full_name.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control", placeholder="Create password") }}
+                    {% for error in form.password.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <div class="mb-3">
+                    {{ form.password2.label(class="form-label") }}
+                    {{ form.password2(class="form-control", placeholder="Repeat password") }}
+                    {% for error in form.password2.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                {{ form.submit(class="btn btn-custom-primary w-100") }}
+            </form>
+            
+        </div>
+        
+        <p class="text-center mt-3">
+            <a href="{{ url_for('login') }}" class="text-light text-decoration-none">Already have an account? Log In</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

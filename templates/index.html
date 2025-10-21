@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="p-5 text-center">
+    <h1 class="display-4" style="color: var(--primary-color);">Welcome</h1>
+    <p class="lead text-light">Start managing your workouts.</p>
+    <hr class="my-4">
+    <a class="btn btn-custom-primary btn-lg" href="{{ url_for('start') }}" role="button">Start</a>
+</div>
+{% endblock %}

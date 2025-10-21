@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h2 class="text-center mb-4" style="color: var(--primary-color);">Checkout: {{ selected_plan }} Plan</h2>
+        <div class="card card-dark p-4">
+            
+            <form method="POST">
+                {{ form.hidden_tag() }} 
+                
+                <h5 class="text-light mb-3">Card Details</h5>
+
+                <div class="mb-3">
+                    {{ form.card_number.label(class="form-label") }}
+                    {{ form.card_number(class="form-control", placeholder="XXXX XXXX XXXX XXXX") }}
+                    {% for error in form.card_number.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        {{ form.cvv_number.label(class="form-label") }}
+                        {{ form.cvv_number(class="form-control", placeholder="XXX") }}
+                        {% for error in form.cvv_number.errors %}
+                            <small class="text-danger d-block">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label class="form-label">Expiration Date</label>
+                        <div class="d-flex">
+                            {{ form.expiry_month(class="form-select me-2") }}
+                            {{ form.expiry_year(class="form-select") }}
+                        </div>
+                        {% for error in form.expiry_month.errors %}
+                            <small class="text-danger d-block">Month: {{ error }}</small>
+                        {% endfor %}
+                        {% for error in form.expiry_year.errors %}
+                            <small class="text-danger d-block">Year: {{ error }}</small>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.full_name.label(class="form-label") }}
+                    {{ form.full_name(class="form-control", placeholder="Full Name as on Card") }}
+                    {% for error in form.full_name.errors %}
+                        <small class="text-danger d-block">{{ error }}</small>
+                    {% endfor %}
+                </div>
+                
+                {{ form.submit(class="btn btn-custom-primary w-100 mt-3") }}
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

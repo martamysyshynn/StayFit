@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Start{% endblock %}
+
+{% block content %}
+<div class="p-5 text-center">
+    <h1 class="display-4 mb-3" style="color: var(--primary-color);">Choose Your Plan</h1>
+    <p class="lead text-light mb-5">Select the membership that fits your fitness goals.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card card-dark text-center p-3 h-100">
+            <h4 class="card-header border-0 pb-0" style="color: var(--primary-color);">Monthly</h4>
+            <div class="card-body">
+                <h1 class="card-title my-3">700 UAH<span class="small text-muted">/mo</span></h1>
+                <ul class="list-unstyled mb-4 text-light">
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> 30 Days Commitment</li>
+                </ul>
+                <a href="{{ url_for('register') }}" class="btn btn-custom-primary w-100">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card card-dark text-center p-3 h-100">
+            <h4 class="card-header border-0 pb-0 pt-4" style="color: var(--primary-color);">Quarterly</h4>
+            <div class="card-body">
+                <h1 class="card-title my-3">1500 UAH<span class="small text-muted">/3mo</span></h1>
+                <ul class="list-unstyled mb-4 text-light">
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 10%</li>
+                </ul>
+                <a href="{{ url_for('checkout', plan='Monthly') }}" class="btn btn-custom-primary w-100">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card card-dark text-center p-3 h-100 border border-3" style="border-color: var(--primary-color) !important;">
+            <div class="position-absolute top-0 start-50 translate-middle badge" style="background-color: var(--primary-color) !important; color: var(--dark-bg);">BEST VALUE</div>
+            <h4 class="card-header border-0 pb-0 pt-4" style="color: var(--primary-color);">Semi-Annual</h4>
+            <div class="card-body">
+                <h1 class="card-title my-3">2500 UAH<span class="small text-muted">/6mo</span></h1>
+                <ul class="list-unstyled mb-4 text-light">
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 15%</li>
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> One free training with trainer</li>
+                </ul>
+                <a href="{{ url_for('checkout') }}" class="btn btn-custom-primary w-100">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card card-dark text-center p-3 h-100">
+            <h4 class="card-header border-0 pb-0" style="color: var(--primary-color);">Annual</h4>
+            <div class="card-body">
+                <h1 class="card-title my-3">5000 UAH<span class="small text-muted">/year</span></h1>
+                <ul class="list-unstyled mb-4 text-light">
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
+                    <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 20%</li>
+                </ul>
+                <a href="{{ url_for('checkout') }}" class="btn btn-custom-primary w-100">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

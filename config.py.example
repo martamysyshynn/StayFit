@@ -1,0 +1,9 @@
+# config_example.py (ДЛЯ GITHUB)
+import os
+
+class Config:
+    
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'MUST_SET_SECRET_KEY'
+    
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///instance/gym_app.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
