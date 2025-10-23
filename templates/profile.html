@@ -31,7 +31,7 @@
             <div class="row align-items-center">
                 <div class="col-7">
                     <h2 class="card-title h3 mb-1" style="color: var(--light-text); font-weight: 500;">
-                        {{ member.membership_type | default('Monthly') }}
+                        {{ member.membership_type | default('None') }}
                     </h2>
                     <p class="text-light mb-0 small">
                         Expires on {{ member.membership_end_date | default('N/A') }}

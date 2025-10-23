@@ -8,6 +8,7 @@
 </div>
 
 <div class="row justify-content-center">
+    {% set link_route = 'checkout' if current_user.is_authenticated else 'register' %}
     <div class="col-md-6 col-lg-3 mb-4">
         <div class="card card-dark text-center p-3 h-100">
             <h4 class="card-header border-0 pb-0" style="color: var(--primary-color);">Monthly</h4>
@@ -17,7 +18,7 @@
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> 30 Days Commitment</li>
                 </ul>
-                <a href="{{ url_for('register') }}" class="btn btn-custom-primary w-100">Get Started</a>
+                <a href="{{ url_for(link_route, plan='Monthly') }}" class="btn btn-custom-primary w-100">Get Started</a>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 10%</li>
                 </ul>
-                <a href="{{ url_for('checkout', plan='Monthly') }}" class="btn btn-custom-primary w-100">Get Started</a>
+                <a href="{{ url_for(link_route, plan='Quarterly') }}" class="btn btn-custom-primary w-100">Get Started</a>
             </div>
         </div>
     </div>
@@ -47,7 +48,7 @@
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 15%</li>
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> One free training with trainer</li>
                 </ul>
-                <a href="{{ url_for('checkout') }}" class="btn btn-custom-primary w-100">Get Started</a>
+                <a href="{{ url_for(link_route, plan='Semi-Annual') }}" class="btn btn-custom-primary w-100">Get Started</a>
             </div>
         </div>
     </div>
@@ -61,7 +62,7 @@
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Full Gym Access</li>
                     <li><i class="fas fa-check small me-2" style="color: var(--primary-color);"></i> Save 20%</li>
                 </ul>
-                <a href="{{ url_for('checkout') }}" class="btn btn-custom-primary w-100">Get Started</a>
+                <a href="{{ url_for('register') }}" class="btn btn-custom-primary w-100">Get Started</a>
             </div>
         </div>
     </div>

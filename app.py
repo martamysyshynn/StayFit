@@ -28,15 +28,15 @@ def create_app(config_class=Config):
     
     @app.route('/start')
     def start():
-        if current_user.is_authenticated:
-            return redirect(url_for('checkout'))
+        if current_user.is_authenticated and current_user.member_details.days_left() > 0:
+            return redirect(url_for('profile'))
         
         return render_template('start.html', title='Start')
 
     @app.route('/register', methods=['GET', 'POST'])
     def register():
         if current_user.is_authenticated:
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
         
         form = RegistrationForm()
 
@@ -52,6 +52,7 @@ def create_app(config_class=Config):
             flash('Registration successful! Now log In.', 'success')
             return redirect(url_for('login'))
         
+        selected_plan = request.args.get('plan', 'Monthly')
         return render_template('register.html', title='Registration', form=form)
 
     @app.route('/login', methods=['GET', 'POST'])
@@ -71,7 +72,15 @@ def create_app(config_class=Config):
             login_user(user)
 
             next_page = request.args.get('next')
+         
+            if current_user.member_details and current_user.member_details.days_left() <= 0:
+                if next_page:
+                    return redirect(next_page)
+                
+                return redirect(url_for('start'))
+            
             return redirect(next_page or url_for('profile'))
+        
         
         return render_template('login.html', title='Log In', form=form)
     
@@ -85,6 +94,9 @@ def create_app(config_class=Config):
     @login_required
     def profile():
         member = current_user.member_details
+
+        if member.days_left() <= 0:
+            return redirect(url_for('start'))
 
         return render_template('profile.html', title='My Dashboard', member=member)
     
@@ -123,6 +135,8 @@ def create_app(config_class=Config):
             db.session.commit()
 
             return redirect(url_for('profile'))
+        
+        form.full_name.data = current_user.full_name
 
         return render_template('checkout.html', title=f'Checkout - {selected_plan}', form=form, selected_plan=selected_plan)
     return app

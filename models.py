@@ -25,8 +25,8 @@ class Member(db.Model):
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
-    membership_type = db.Column(db.String(50), default='Monthly')
-    membership_end_date = db.Column(db.Date, nullable=False, default=(date.today() + timedelta(days=30)))
+    membership_type = db.Column(db.String(50), default='None')
+    membership_end_date = db.Column(db.Date, nullable=False, default=date.today())
 
     def days_left(self):
         data = self.membership_end_date - date.today()
