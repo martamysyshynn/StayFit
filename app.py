@@ -139,6 +139,12 @@ def create_app(config_class=Config):
         form.full_name.data = current_user.full_name
 
         return render_template('checkout.html', title=f'Checkout - {selected_plan}', form=form, selected_plan=selected_plan)
+    
+    @app.route('/schedule')
+    def schedule():
+        if current_user.is_authenticated:
+            return render_template('schedule.html', title='Schedule')
+        
     return app
 
 if __name__ == '__main__':

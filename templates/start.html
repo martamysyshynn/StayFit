@@ -9,6 +9,13 @@
 
 <div class="row justify-content-center">
     {% set link_route = 'checkout' if current_user.is_authenticated else 'register' %}
+
+    {% if current_user.is_authenticated and current_user.member_details.days_left() <= 0 %}
+    <div class="alert alert-warning my-4 text-center" role="alert">
+        Your subscription has expired or has not yet been activated. Please select a plan to continue.
+    </div>
+    {% endif %}
+
     <div class="col-md-6 col-lg-3 mb-4">
         <div class="card card-dark text-center p-3 h-100">
             <h4 class="card-header border-0 pb-0" style="color: var(--primary-color);">Monthly</h4>

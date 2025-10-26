@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Schedule{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <h1 class="display-5 mb-5 text-start" style="color: var(--primary-color);">
+            Schedule
+        </h1>
+        
+        {% if not classes %}
+            <div class="alert alert-info text-center" role="alert">
+                There are no classes scheduled at this time. Please check back later!
+            </div>
+        {% else %}
+        
+            {% set current_day = "" %}
+            
+            {% for class in classes %}
+                {% set class_day = class.time.strftime('%A, %B %d') %}
+                {% if class_day != current_day %}
+                    <h3 class="mt-4 mb-3 text-light" style="border-bottom: 1px solid #3d4347;">
+                        {{ class.time.strftime('%A, %B %d') }}
+                    </h3>
+                    {% set current_day = class_day %}
+                {% endif %}
+  
+                <div class="card card-dark p-3 mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="class-details">
+                            <h5 class="text-light mb-1">{{ class.name }}</h5>
+                            <p class="small text-muted mb-0">
+                                <i class="far fa-clock me-1"></i> {{ class.time.strftime('%H:%M') }}
+                                <i class="fas fa-user-tie ms-3 me-1"></i> {{ class.trainer }}
+                            </p>
+                        </div>
+                        
+                        <div class="class-action">
+                            
+                            {% set is_booked = class.id in booked_ids %}
+                            
+                            <form method="POST" action="{{ url_for('book_class', class_id=class.id) }}" style="display: inline;">
+                                {% if is_booked %}
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-times me-1"></i> Cancel
+                                    </button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-sm btn-custom-primary">
+                                        <i class="fas fa-check me-1"></i> Book
+                                    </button>
+                                {% endif %}
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
